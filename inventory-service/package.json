@@ -1,0 +1,14 @@
+{
+  "name": "inventory-service",
+  "version": "1.0.0",
+  "description": "Microsserviço de controle de estoque",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.23.1"
+  }
+}
