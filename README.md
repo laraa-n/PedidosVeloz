@@ -208,3 +208,40 @@ As credenciais de demonstração não devem ser utilizadas em ambientes de produ
 O PedidosVeloz demonstra uma implementação acadêmica de uma plataforma distribuída, contemplando conteinerização, orquestração, automação de build e publicação de imagens, monitoramento e escalabilidade.
 
 A solução constitui um MVP funcional e uma base para futuras evoluções, como testes automatizados, tracing distribuído instrumentado, persistência mais robusta no Kubernetes e provisionamento completo por Terraform.
+
+
+## Testes e validação dos serviços
+
+Após iniciar o ambiente com Docker Compose, os serviços podem ser
+validados por meio de seus endpoints de saúde.
+
+### Comandos de verificação
+
+```powershell
+Invoke-RestMethod http://localhost:3004/health
+Invoke-RestMethod http://localhost:3005/health
+Invoke-RestMethod http://localhost:3006/health
+Invoke-RestMethod http://localhost:3007/health
+```
+
+### Resultados
+
+| Serviço | Porta | Resultado |
+|---|---:|---|
+| API Gateway | 3004 | Healthy |
+| Orders Service | 3005 | Healthy |
+| Payments Service | 3006 | Healthy |
+| Inventory Service | 3007 | Healthy |
+
+Os quatro endpoints responderam com estado saudável.
+Os serviços de pedidos e estoque também confirmaram conexão
+com o PostgreSQL.
+
+### Observabilidade
+
+O ambiente possui monitoramento com Prometheus, Grafana e cAdvisor.
+
+Dashboard local: http://localhost:3008
+
+São acompanhados indicadores de consumo de CPU, memória e
+quantidade de contêineres ativos.
